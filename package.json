@@ -1,0 +1,27 @@
+{
+  "name": "tailwindcss-background-extended",
+  "version": "0.1.0",
+  "description": "This plugin adds all of the missing background utilities to Tailwind CSS.",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hacknug/tailwindcss-background-extended.git"
+  },
+  "keywords": [
+    "tailwind",
+    "tailwindcss",
+    "tailwind css",
+    "tailwindcss-plugin",
+    "plugin"
+  ],
+  "author": {
+    "name" : "Nestor Vera",
+    "email" : "nestorvera@me.com",
+    "url" : "https://nestor.rip/"
+  },
+  "bugs": {
+    "url": "https://github.com/hacknug/tailwindcss-background-extended/issues"
+  },
+  "homepage": "https://github.com/hacknug/tailwindcss-background-extended#readme"
+}
