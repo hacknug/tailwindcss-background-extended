@@ -1,22 +1,36 @@
-module.exports = function (variants) {
-  return function ({ addUtilities }) {
-    addUtilities(
-      {
-        // Background
-        // Background Image
+var _ = require('lodash')
+var flatten = require('flat')
 
-        // Background Clip
-        '.bg-clip-border': { backgroundClip: 'border-box' },
-        '.bg-clip-padding': { backgroundClip: 'padding-box' },
-        '.bg-clip-content': { backgroundClip: 'content-box' },
-        '.bg-clip-text': { backgroundClip: 'text' },
+module.exports = function () {
+  return function ({
+    addUtilities, addComponents, addBase, addVariant,
+    e, prefix, theme, variants, config,
+  }) {
+    const pluginUtilities = {
+        // '.bg': {},
+        // '.bg-image': {},
 
-        // Background Origin
-        '.bg-origin-border': { backgroundOrigin: 'border-box' },
-        '.bg-origin-padding': { backgroundOrigin: 'padding-box' },
-        '.bg-origin-content': { backgroundOrigin: 'content-box' },
-      },
-      variants
-    )
+        clip: {
+          border: { backgroundClip: 'border-box' },
+          padding: { backgroundClip: 'padding-box' },
+          content: { backgroundClip: 'content-box' },
+          text: { backgroundClip: 'text' },
+        },
+        origin: {
+          border: { backgroundOrigin: 'border-box' },
+          padding: { backgroundOrigin: 'padding-box' },
+          content: { backgroundOrigin: 'content-box' },
+        },
+    }
+
+    Object.entries(pluginUtilities).forEach(([ modifier, values ]) => {
+      const variantName = _.camelCase(`background-${modifier}`)
+      const utilities = flatten(
+        { [`.${e(`bg-${modifier}`)}`]: values },
+        { delimiter: '-', maxDepth: 2 },
+      )
+
+      addUtilities(utilities, variants(variantName, ['responsive']))
+    })
   }
 }

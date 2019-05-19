@@ -1,6 +1,9 @@
 {
   "name": "tailwindcss-background-extended",
   "version": "0.1.0",
+  "scripts": {
+    "test": "jest"
+  },
   "description": "This plugin adds all of the missing background utilities to Tailwind CSS.",
   "license": "MIT",
   "main": "index.js",
@@ -16,12 +19,22 @@
     "plugin"
   ],
   "author": {
-    "name" : "Nestor Vera",
-    "email" : "nestorvera@me.com",
-    "url" : "https://nestor.rip/"
+    "name": "Nestor Vera",
+    "email": "nestorvera@me.com",
+    "url": "https://nestor.rip/"
   },
   "bugs": {
     "url": "https://github.com/hacknug/tailwindcss-background-extended/issues"
   },
-  "homepage": "https://github.com/hacknug/tailwindcss-background-extended#readme"
+  "homepage": "https://github.com/hacknug/tailwindcss-background-extended#readme",
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "jest-matcher-css": "^1.0.3",
+    "postcss": "^7.0.16",
+    "tailwindcss": "^1.0.1"
+  },
+  "dependencies": {
+    "flat": "^4.1.0",
+    "lodash": "^4.17.11"
+  }
 }
