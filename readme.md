@@ -7,6 +7,9 @@ This plugin adds all of the missing background utilities to Tailwind CSS.
 Add this plugin to your project:
 
 ```bash
+# Install using pnpm
+pnpm install --save-dev tailwindcss-background-extended
+
 # Install using npm
 npm install --save-dev tailwindcss-background-extended
 
