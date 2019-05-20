@@ -4,6 +4,10 @@ node_js:
   - "10"
   - "12"
 
+cache:
+  directories:
+    - node_modules
+
 before_install:
   - curl -L https://unpkg.com/@pnpm/self-installer | node
 
