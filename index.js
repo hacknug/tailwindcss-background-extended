@@ -6,10 +6,14 @@ module.exports = function () {
     addUtilities, addComponents, addBase, addVariant,
     e, prefix, theme, variants, config,
   }) {
-    const pluginUtilities = {
-        // '.bg': {},
-        // '.bg-image': {},
+    const buildObjectFromTheme = themeKey => {
+      const buildObject = ([ modifier, value ]) => [ modifier, { [themeKey]: value } ]
+      const themeEntries = Object.entries(theme(themeKey, {})).map(entry => buildObject(entry))
+      return _.fromPairs(themeEntries)
+    }
 
+    const pluginUtilities = {
+        image: buildObjectFromTheme('backgroundImage'),
         clip: {
           border: { backgroundClip: 'border-box' },
           padding: { backgroundClip: 'padding-box' },
@@ -23,14 +27,16 @@ module.exports = function () {
         },
     }
 
-    Object.entries(pluginUtilities).forEach(([ modifier, values ]) => {
-      const variantName = _.camelCase(`background-${modifier}`)
-      const utilities = flatten(
-        { [`.${e(`bg-${modifier}`)}`]: values },
-        { delimiter: '-', maxDepth: 2 },
-      )
+    Object.entries(pluginUtilities)
+      .filter(([ modifier, values ]) => !_.isEmpty(values))
+      .forEach(([ modifier, values ]) => {
+        const variantName = _.camelCase(`background-${modifier}`)
+        const utilities = flatten(
+          { [`.${e(`bg-${modifier}`)}`]: values },
+          { delimiter: '-', maxDepth: 2 },
+        )
 
-      addUtilities(utilities, variants(variantName, ['responsive']))
-    })
+        addUtilities(utilities, variants(variantName, ['responsive']))
+      })
   }
 }

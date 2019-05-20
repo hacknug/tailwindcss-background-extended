@@ -2,7 +2,8 @@
   "name": "tailwindcss-background-extended",
   "version": "0.1.0",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev": "jest --watch"
   },
   "description": "This plugin adds all of the missing background utilities to Tailwind CSS.",
   "license": "MIT",

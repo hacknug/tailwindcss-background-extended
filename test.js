@@ -1,3 +1,5 @@
+const _ = require('lodash')
+
 const plugin = require('./index.js')
 const postcss = require('postcss')
 const tailwindcss = require('tailwindcss')
@@ -10,7 +12,7 @@ const generatePluginCss = (testConfig = {}, pluginOptions = {}) => {
     plugins: [ plugin(pluginOptions) ],
   }
   const postcssPlugins =[
-    tailwindcss({ ...sandboxConfig, ...testConfig }),
+    tailwindcss(_.merge(sandboxConfig, testConfig)),
   ]
 
   return postcss(postcssPlugins)
@@ -20,7 +22,7 @@ const generatePluginCss = (testConfig = {}, pluginOptions = {}) => {
 
 expect.extend({ toMatchCss: require('jest-matcher-css') })
 
-test('the plugin generates some utilities and responsive variants by default', () => {
+test('generates default utilities and responsive variants', () => {
   const testConfig = {}
   const expectedCss = `
     .bg-clip-border { background-clip: border-box }
@@ -72,6 +74,43 @@ test('variants can be customized', () => {
     .focus\\:bg-origin-border:focus { background-origin: border-box }
     .focus\\:bg-origin-padding:focus { background-origin: padding-box }
     .focus\\:bg-origin-content:focus { background-origin: content-box }
+  `
+
+  return generatePluginCss(testConfig).then(css => expect(css).toMatchCss(expectedCss))
+})
+
+test('utilities can be customized', () => {
+  const testConfig = {
+    theme: {
+      backgroundImage: {
+        tailwindcss: "url('https://avatars0.githubusercontent.com/u/30317862')",
+      },
+    },
+  }
+  const expectedCss = `
+    .bg-image-tailwindcss { background-image: url('https://avatars0.githubusercontent.com/u/30317862') }
+
+    .bg-clip-border { background-clip: border-box }
+    .bg-clip-padding { background-clip: padding-box }
+    .bg-clip-content { background-clip: content-box }
+    .bg-clip-text { background-clip: text }
+
+    .bg-origin-border { background-origin: border-box }
+    .bg-origin-padding { background-origin: padding-box }
+    .bg-origin-content { background-origin: content-box }
+
+    @media (min-width: 640px) {
+      .sm\\:bg-image-tailwindcss { background-image: url('https://avatars0.githubusercontent.com/u/30317862') }
+
+      .sm\\:bg-clip-border { background-clip: border-box }
+      .sm\\:bg-clip-padding { background-clip: padding-box }
+      .sm\\:bg-clip-content { background-clip: content-box }
+      .sm\\:bg-clip-text { background-clip: text }
+
+      .sm\\:bg-origin-border { background-origin: border-box }
+      .sm\\:bg-origin-padding { background-origin: padding-box }
+      .sm\\:bg-origin-content { background-origin: content-box }
+    }
   `
 
   return generatePluginCss(testConfig).then(css => expect(css).toMatchCss(expectedCss))
