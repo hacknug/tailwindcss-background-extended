@@ -5,7 +5,7 @@ node_js:
   - "12"
 
 before_install:
-  - npm install -g pnpm
+  - curl -L https://unpkg.com/@pnpm/self-installer | node
 
 script:
   - pnpm install
