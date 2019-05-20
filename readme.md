@@ -17,17 +17,32 @@ npm install --save-dev tailwindcss-background-extended
 yarn add -D tailwindcss-background-extended
 ```
 
-## Notes
-
-I will be adding support for creating classes for `background` and `background-image` soon-ish. Feel free to open an issue if you need it before I get to it.
-
 ## Usage
 
 ```js
-require('tailwindcss-background-extended')(['responsive'])
+// tailwind.config.js
+{
+  theme: {
+    backgroundImage: { // defaults to {}
+      tailwindcss: "url('https://avatars0.githubusercontent.com/u/30317862')",
+    },
+  },
+
+  variants: { // all the following default to ['responsive']
+    backgroundImage: ['responsive'],
+    backgroundClip: ['responsive'],
+    backgroundOrigin: ['responsive'],
+  },
+
+  plugins: [
+    require('tailwindcss-background-extended'), // no options to configure
+  ],
+}
 ```
 
 ```css
+.bg-image-tailwindcss { background-image: url('https://avatars0.githubusercontent.com/u/30317862'); }
+
 .bg-clip-border { background-clip: border-box; }
 .bg-clip-padding { background-clip: padding-box; }
 .bg-clip-content { background-clip: content-box; }
