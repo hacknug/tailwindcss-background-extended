@@ -30,7 +30,7 @@ module.exports = function () {
     Object.entries(pluginUtilities)
       .filter(([ modifier, values ]) => !_.isEmpty(values))
       .forEach(([ modifier, values ]) => {
-        const variantName = _.camelCase(`background-${modifier}`)
+        const variantName = Object.keys(Object.entries(values)[0][1])[0]
         const utilities = flatten(
           { [`.${e(`bg-${modifier}`)}`]: values },
           { delimiter: '-', maxDepth: 2 },
