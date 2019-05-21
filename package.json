@@ -1,41 +1,41 @@
 {
   "name": "tailwindcss-background-extended",
   "version": "1.0.0",
-  "scripts": {
-    "test": "jest",
-    "dev": "jest --watch"
-  },
   "description": "This plugin adds all of the missing background utilities to Tailwind CSS.",
-  "license": "MIT",
-  "main": "index.js",
+  "keywords": [
+    "plugin",
+    "tailwind",
+    "tailwind css",
+    "tailwindcss",
+    "tailwindcss-plugin"
+  ],
+  "homepage": "https://github.com/hacknug/tailwindcss-background-extended#readme",
+  "bugs": {
+    "url": "https://github.com/hacknug/tailwindcss-background-extended/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hacknug/tailwindcss-background-extended.git"
   },
-  "keywords": [
-    "tailwind",
-    "tailwindcss",
-    "tailwind css",
-    "tailwindcss-plugin",
-    "plugin"
-  ],
+  "license": "MIT",
   "author": {
     "name": "Nestor Vera",
     "email": "nestorvera@me.com",
     "url": "https://nestor.rip/"
   },
-  "bugs": {
-    "url": "https://github.com/hacknug/tailwindcss-background-extended/issues"
+  "main": "index.js",
+  "scripts": {
+    "dev": "jest --watch",
+    "test": "jest"
   },
-  "homepage": "https://github.com/hacknug/tailwindcss-background-extended#readme",
+  "dependencies": {
+    "flat": "^4.1.0",
+    "lodash": "^4.17.11"
+  },
   "devDependencies": {
     "jest": "^24.8.0",
     "jest-matcher-css": "^1.0.3",
     "postcss": "^7.0.16",
     "tailwindcss": "^1.0.1"
-  },
-  "dependencies": {
-    "flat": "^4.1.0",
-    "lodash": "^4.17.11"
   }
 }
